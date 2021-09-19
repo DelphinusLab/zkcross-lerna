@@ -10,3 +10,9 @@
 [submodule "packages/delphinus-monitors"]
 	path = packages/delphinus-monitors
 	url = git@github.com:ZhenXunGe/delphinus-monitors.git
+[submodule "packages/delphinus-curves"]
+	path = packages/delphinus-curves
+	url = git@github.com:ZhenXunGe/delphinus-curves.git
+[submodule "packages/delphinus-zkp"]
+	path = packages/delphinus-zkp
+	url = git@github.com:ZhenXunGe/delphinus-zkp.git
