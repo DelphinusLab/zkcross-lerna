@@ -1,4 +1,4 @@
-# environments
+# environments setup
 
 check_brew_installed() {
     echo "Check if brew is installed ..."
@@ -52,9 +52,23 @@ check_circom_installed() {
     echo "circom is ready ✅"
 }
 
+echo "Prepare environment ..."
+
+echo "1>. Create environment.tmp folder."
+[ -d "./environment.tmp" ] || mkdir environment.tmp
+
+echo "2>. Install build tools ..."
+cd environment.tmp
 check_brew_installed
 check_brew_tools_installed repo
 check_brew_tools_installed npm
-check_node_tools_installed snarkjs
+check_brew_tools_installed build-essential # MacOS requires xcode command-line-tools
+check_brew_tools_installed cmake
 check_rustup_installed
 check_circom_installed
+check_node_tools_installed snarkjs
+
+echo "3>. Cleanup environment.tmp folder."
+cd .. 
+[ -d "./environment.tmp" ] && rm -rf environment.tmp
+echo "Environment is setup successfully. 💯"
