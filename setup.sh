@@ -1,3 +1,4 @@
+sh environment.sh
 [ -d "./packages" ] || mkdir packages
 
 cd packages
