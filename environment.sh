@@ -24,7 +24,7 @@ check_brew_tools_installed() {
     if [ -f "`which $1`" ]; then
         echo "$1 is ready ✅"
     else
-        if [ $1 == "build-essential" ]; then 
+        if [ "$1" == "build-essential" ]; then 
             echo "$1 is skipped 😵"
         else
             echo "$1 install failed ❌, please install it manually."
@@ -65,8 +65,10 @@ check_circom_installed() {
     if [ ! -f "`which circom`" ]; then
         echo "circom not found, perform install"
         git clone https://github.com/iden3/circom.git
+        cd circom
         cargo build --release
         cargo install --path circom
+        cd ..
     fi
 
     if [ -f "`which circom`" ]; then
