@@ -8,7 +8,7 @@ For fresh environment,
 
 If you see some error messages, need manually install the error module in your OS.
 
-## Run set up
+## Package Setup
 
 After finish install the environment, please open a new terminal to continue. Then
 - run `> bash setup.sh`
