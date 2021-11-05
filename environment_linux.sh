@@ -87,10 +87,12 @@ echo "1>. Create environment.tmp folder."
 echo "2>. Install build tools ..."
 cd environment.tmp
 check_brew_installed
-check_brew_tools_installed npm
-check_brew_tools_installed repo
 sudo apt install build-essential
 check_brew_tools_installed cmake
+#Install m4 to avoid unnecessary repositories conflict for npm and repo
+check_brew_tools_installed m4
+check_brew_tools_installed npm
+check_brew_tools_installed repo
 check_rustup_installed
 check_circom_installed
 check_node_tools_installed snarkjs
