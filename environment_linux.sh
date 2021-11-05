@@ -1,3 +1,4 @@
+#!/bin/bash
 # environments setup
 
 check_brew_installed() {
@@ -86,8 +87,8 @@ echo "1>. Create environment.tmp folder."
 echo "2>. Install build tools ..."
 cd environment.tmp
 check_brew_installed
-check_brew_tools_installed repo
 check_brew_tools_installed npm
+check_brew_tools_installed repo
 sudo apt install build-essential
 check_brew_tools_installed cmake
 check_rustup_installed
