@@ -1,6 +1,6 @@
 # delphinus-lerna
 
-## Install environment
+## Prepare Environment
 
 For fresh environment, 
 - run `> bash environment_MacOS.sh` for Mac or 
