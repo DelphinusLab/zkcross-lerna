@@ -21,10 +21,14 @@ check_brew_tools_installed() {
         brew install $1
     fi
 
-    if [ -f "`which brew`" ]; then
+    if [ -f "`which $1`" ]; then
         echo "$1 is ready ✅"
     else
-        echo "$1 install failed ❌, please install it manually."
+        if [ $1 == "build-essential" ]; then 
+            echo "$1 is skipped 😵"
+        else
+            echo "$1 install failed ❌, please install it manually."
+        fi
     fi
 }
 
@@ -35,7 +39,7 @@ check_node_tools_installed() {
         npm install -g $1
     fi
 
-    if [ -f "`which brew`" ]; then
+    if [ -f "`which $1`" ]; then
         echo "$1 is ready ✅"
     else
         echo "$1 install failed ❌, please install it manually."
