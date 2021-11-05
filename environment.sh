@@ -7,7 +7,11 @@ check_brew_installed() {
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
-    echo "brew is ready ✅"
+    if [ -f "`which brew`" ]; then
+        echo "brew is ready ✅"
+    else
+        echo "brew install failed ❌, please install it manually."
+    fi
 }
 
 check_brew_tools_installed() {
@@ -17,7 +21,11 @@ check_brew_tools_installed() {
         brew install $1
     fi
 
-    echo "$1 is ready ✅"
+    if [ -f "`which brew`" ]; then
+        echo "$1 is ready ✅"
+    else
+        echo "$1 install failed ❌, please install it manually."
+    fi
 }
 
 check_node_tools_installed() {
@@ -27,7 +35,11 @@ check_node_tools_installed() {
         npm install -g $1
     fi
 
-    echo "$1 is ready ✅"
+    if [ -f "`which brew`" ]; then
+        echo "$1 is ready ✅"
+    else
+        echo "$1 install failed ❌, please install it manually."
+    fi
 }
 
 check_rustup_installed() {
@@ -37,7 +49,11 @@ check_rustup_installed() {
         curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
     fi
 
-    echo "rustup is ready ✅"
+    if [ -f "`which rustup`" ]; then
+        echo "rustup is ready ✅"
+    else
+        echo "rustup install failed ❌, please install it manually."
+    fi
 }
 
 check_circom_installed() {
@@ -49,7 +65,11 @@ check_circom_installed() {
         cargo install --path circom
     fi
 
-    echo "circom is ready ✅"
+    if [ -f "`which circom`" ]; then
+        echo "circom is ready ✅"
+    else
+        echo "circom install failed ❌, please install it manually."
+    fi
 }
 
 echo "Prepare environment ..."
