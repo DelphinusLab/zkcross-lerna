@@ -1,6 +1,5 @@
-sh environment.sh
-
 [ -d "./packages" ] || mkdir packages
+
 cd packages
 repo init -u git@github.com:ZhenXunGe/delphinus.git -b main
 repo sync
