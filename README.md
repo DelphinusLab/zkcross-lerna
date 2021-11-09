@@ -1,4 +1,5 @@
 # delphinus-lerna
+[![CI to Verify setup.sh](https://github.com/ZhenXunGe/delphinus-lerna/actions/workflows/main.yml/badge.svg)](https://github.com/ZhenXunGe/delphinus-lerna/actions/workflows/main.yml)
 
 ## Prepare Environment
 
