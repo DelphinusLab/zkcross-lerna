@@ -3,8 +3,8 @@
 ## Prepare Environment
 
 For fresh environment, 
-- run `> bash environment_MacOS.sh` for Mac or 
-- run `> bash environment_Linux.sh` for Linux.
+- run `> bash environment_mac.sh` for Mac or 
+- run `> bash environment_linux.sh` for Linux.
 
 If you see some error messages, need manually install the error module in your OS.
 
