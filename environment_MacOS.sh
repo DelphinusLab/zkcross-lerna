@@ -5,6 +5,12 @@ check_brew_installed() {
     if [ ! -f "`which brew`" ]; then
         echo "brew not found, perform install"
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+        # for m1 mac refer https://www.freecodecamp.org/news/install-xcode-command-line-tools/
+        if [ -f "/opt/homebrew/bin/brew" ]; then
+            echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+        fi
     fi
 
     if [ -f "`which brew`" ]; then
@@ -24,11 +30,7 @@ check_brew_tools_installed() {
     if [ -f "`which $1`" ]; then
         echo "$1 is ready ✅"
     else
-        if [ "$1" == "build-essential" ]; then 
-            echo "$1 is skipped 😵"
-        else
-            echo "$1 install failed ❌, please install it manually."
-        fi
+        echo "$1 install failed ❌, please install it manually."
     fi
 }
 
@@ -88,7 +90,6 @@ cd environment.tmp
 check_brew_installed
 check_brew_tools_installed repo
 check_brew_tools_installed npm
-check_brew_tools_installed build-essential # MacOS requires xcode command-line-tools
 check_brew_tools_installed cmake
 check_rustup_installed
 check_circom_installed
