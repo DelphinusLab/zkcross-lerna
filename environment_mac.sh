@@ -8,6 +8,7 @@ check_brew_installed() {
 
         # for m1 mac refer https://www.freecodecamp.org/news/install-xcode-command-line-tools/
         if [ -f "/opt/homebrew/bin/brew" ]; then
+            echo "link brew on M1 mac"
             echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
             eval "$(/opt/homebrew/bin/brew shellenv)"
         fi
