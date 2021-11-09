@@ -25,10 +25,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Verify setup.sh
-        run: echo 'running setup.sh ...'
+      - name: Run environment_mac.sh
+        run: bash environment_mac.sh
 
       - name: Run setup.sh
-        run: |
-          bash environment_mac.sh
-          bash setup.sh
+        run: bash setup.sh
