@@ -4,10 +4,15 @@ cd packages/solidity/tools
 [ -d testnet1.backup ] || bash create_testnet.sh
 cd -
 
-cd packages/zkp
-[ -f out ] || zokrates compile -i zok/business/main.zok
-[ -f proving.key ] || zokrates setup
-[ -f verifier.sol ] || zokrates export-verifier
+#cd packages/zkp
+#[ -f out ] || zokrates compile -i zok/business/main.zok
+#[ -f proving.key ] || zokrates setup
+#[ -f verifier.sol ] || zokrates export-verifier
+#cd -
+
+cd packages/zkp/circom
+[ -f pot20_final.ptau ] || bash tools/setup.sh
+[ -d main_js ] || bash tools/compile.sh
 cd -
 
 #cd packages/monitors
@@ -27,12 +32,15 @@ echo ""
 echo "cd ${pwd}/packages/substrate-node && bash start.sh"
 echo ""
 echo "cd ${pwd}/packages/wallet && npm run start"
+echo ""
 
-read "Please press any key to continue"
+read
 
 if [ ! -f init.lock ];
 then
-    cp packages/zkp/verifier.sol packages/solidity/contracts/ZKPVerifier.sol
+    #cp packages/zkp/verifier.sol packages/solidity/contracts/ZKPVerifier.sol
+    cp packages/zkp/circom/verifier.sol packages/solidity/contracts/ZKPVerifier.sol
+    sed -i "s/\^0.6.11/^0.8.0/" packages/solidity/contracts/ZKPVerifier.sol
 
     cd packages/solidity
     npx truffle migrate --network testnet1
