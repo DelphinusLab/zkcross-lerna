@@ -61,6 +61,8 @@ check_rustup_installed() {
     else
         echo "rustup install failed ❌, please install it manually."
     fi
+
+    rustup update
 }
 
 check_circom_installed() {
