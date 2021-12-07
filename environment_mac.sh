@@ -83,6 +83,20 @@ check_circom_installed() {
     fi
 }
 
+check_wasm_pack_installed_on_m1() {
+    echo "Check if wasm-pack is installed on M1 ..."
+    if [ ! -f "`which wasm-pack`" ]; then
+        echo "wasm-pack not found, perform install"
+        env MACOSX_DEPLOYMENT_TARGET=10.7 cargo install wasm-pack
+    fi
+
+    if [ -f "`which wasm-pack`" ]; then
+        echo "wasm-pack is ready ✅"
+    else
+        echo "wasm-pack install failed ❌, please install it manually."
+    fi    
+}
+
 echo "Prepare environment ..."
 
 echo "1>. Create environment.tmp folder."
@@ -97,6 +111,7 @@ check_brew_tools_installed node
 check_brew_tools_installed cmake
 check_rustup_installed
 check_circom_installed
+check_wasm_pack_installed_on_m1
 check_node_tools_installed snarkjs
 
 echo "3>. Cleanup environment.tmp folder."
