@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-LERNA_PATH="${BASH_SOURCE[0]}"
+#!/bin/bash
+LERNA_PATH=`dirname "${BASH_SOURCE}"`
 
 # under lerna
 git restore package-lock.json
