@@ -1,7 +1,7 @@
 [ -d "./packages" ] || mkdir packages
 
 cd packages
-repo init -u git@github.com:DelphinusLab/delphinus.git -b sign
+repo init -u git@github.com:DelphinusLab/delphinus.git -b main
 repo sync
 cd -
 
