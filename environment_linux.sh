@@ -1,6 +1,11 @@
 #!/bin/bash
 # environments setup
 
+# For installing nodejs v14:
+# curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+# For installing wasm pack:
+# curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
 check_brew_installed() {
     echo "Check if brew is installed ..."
     if [ ! -f "`which brew`" ]; then
@@ -36,7 +41,7 @@ check_node_tools_installed() {
     echo "Check if $1 is installed by node ..."
     if [ ! -f "`which $1`" ]; then
         echo "$1 not found, perform install"
-        npm install -g $1
+        sudo npm install -g $1
     fi
 
     if [ -f "`which $1`" ]; then
@@ -88,6 +93,7 @@ echo "2>. Install build tools ..."
 cd environment.tmp
 check_brew_installed
 sudo apt install build-essential
+sudo apt install m4 npm python
 check_brew_tools_installed cmake
 #Install m4 to avoid unnecessary repositories conflict for npm and repo
 check_brew_tools_installed m4
