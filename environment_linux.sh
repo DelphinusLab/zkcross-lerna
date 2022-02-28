@@ -6,36 +6,7 @@
 # For installing wasm pack:
 # curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
-check_brew_installed() {
-    echo "Check if brew is installed ..."
-    if [ ! -f "`which brew`" ]; then
-        echo "brew not found, perform install"
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-        echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    fi
-
-    if [ -f "`which brew`" ]; then
-        echo "brew is ready ✅"
-    else
-        echo "brew install failed ❌, please install it manually."
-    fi
-}
-
-check_brew_tools_installed() {
-    echo "Check if $1 is installed by brew ..."
-    if [ ! -f "`which $1`" ]; then
-        echo "$1 not found, perform install"
-        brew install $1
-    fi
-
-    if [ -f "`which $1`" ]; then
-        echo "$1 is ready ✅"
-    else
-        echo "$1 install failed ❌, please install it manually."
-    fi
-}
 
 check_node_tools_installed() {
     echo "Check if $1 is installed by node ..."
@@ -91,18 +62,20 @@ echo "1>. Create environment.tmp folder."
 
 echo "2>. Install build tools ..."
 cd environment.tmp
-check_brew_installed
+# in cn , first update apt
 sudo apt install build-essential
-sudo apt install m4 npm python
-check_brew_tools_installed cmake
-#Install m4 to avoid unnecessary repositories conflict for npm and repo
-check_brew_tools_installed m4
-check_brew_tools_installed npm
-check_brew_tools_installed repo
+sudo apt install m4 python  cmake repo 
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install -y nodejs
+echo "2.11>. nodejs-ok."
+# repo npm
 check_rustup_installed
 check_circom_installed
+echo "2.12>. circom-ok."
 check_node_tools_installed snarkjs
-
+echo "2.13>. snarkjs-ok."
+curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+echo "2.14>. wasm-pack-ok."
 echo "3>. Cleanup environment.tmp folder."
 cd .. 
 [ -d "./environment.tmp" ] && rm -rf environment.tmp
