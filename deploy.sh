@@ -11,6 +11,7 @@ dry_run=
 verbose=
 logs_only=
 
+
 function usage() {
   cat <<EOF
 deploy.sh deploy node to remote or local machine
@@ -67,6 +68,8 @@ if [[ -n "$use_ssh" ]]; then
   repo_path="$repo_name"
 fi
 
+dockerfile_path="${repo_path}/packages/substrate-node/"
+
 function quote_command() {
   python3 -c 'import shlex; import sys; print(shlex.join(sys.argv[1:]))' "$@"
 }
@@ -101,7 +104,12 @@ function copy_repo() {
 
 function start_node() {
 
-  dockerfile_path="${repo_path}/packages/substrate-node/"
+  #Dockerfile required in substrate-node directory.
+  #docker-compose.yaml also required in susbtrate-node directory.
+
+  #build context is from outside the substrate-node as required delphinuspackages are outside of substrate-node.
+
+  
   run_maybe_remote_command env DOCKER_BUILDKIT=1 docker build . -t delphinus-node -f "${dockerfile_path}/Dockerfile"
   env=()
   if [[ -n "$domain" ]]; then
