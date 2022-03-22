@@ -1,10 +1,5 @@
 set -e
 
-[ -d data ] || mkdir data
-mongod --dbpath=data 1> db.log 2> db.err &
-
-read
-
 if [ ! -f initbridge.lock ];
 then
     cp packages/zkp/circom/verifier.sol packages/solidity/contracts/ZKPVerifier.sol
@@ -12,8 +7,8 @@ then
 
     # Dont have to migrate the tokens again
     cd packages/solidity
-    npx truffle migrate --f 1 --network ropsten
-    npx truffle migrate --f 1 --network bsctestnet
+    npx truffle migrate --f 1 --to 1 --network ropsten
+    npx truffle migrate --f 1 --to 1 --network bsctestnet
     cd -
 
     cd packages/solidity/clients/tools/bridge
