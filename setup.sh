@@ -6,4 +6,4 @@ repo sync
 cd -
 
 npm install
-npx lerna bootstrap --hoist
+npx lerna bootstrap --hoist --nohoist=circomlib
