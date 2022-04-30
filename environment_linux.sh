@@ -84,6 +84,28 @@ check_circom_installed() {
     fi
 }
 
+check_rapidSnark_installed() {
+    echo "Check if rapidSnark is installed ..."
+    if [ ! -f "../packages/zkp/circom/unit_tests/rapidsnark/build/prover" ]; then
+        echo "rapidSnark not found, perform install"
+        cd ../packages/zkp/circom/unit_tests
+        git clone git@github.com:iden3/rapidsnark.git
+        cd rapidsnark
+        npm install
+        git submodule init
+        git submodule update
+        npx task createFieldSources
+        npx task buildProver
+        cd ../../../../../environment.tmp
+    fi
+
+    if [ -f "../packages/zkp/circom/unit_tests/rapidsnark/build/prover" ]; then
+        echo "rapidsnark is ready ✅"
+    else
+        echo "rapidsnark install failed ❌, please install it manually."
+    fi
+}
+
 echo "Prepare environment ..."
 
 echo "1>. Create environment.tmp folder."
@@ -93,6 +115,9 @@ echo "2>. Install build tools ..."
 cd environment.tmp
 check_brew_installed
 sudo apt install build-essential
+sudo apt-get install libgmp-dev
+sudo apt-get install libsodium-dev
+sudo apt-get install nasm
 sudo apt install m4 npm python
 check_brew_tools_installed cmake
 #Install m4 to avoid unnecessary repositories conflict for npm and repo
@@ -102,6 +127,7 @@ check_brew_tools_installed repo
 check_rustup_installed
 check_circom_installed
 check_node_tools_installed snarkjs
+check_rapidSnark_installed
 
 echo "3>. Cleanup environment.tmp folder."
 cd .. 
