@@ -10,7 +10,7 @@ check_rapidSnark_installed() {
         npx task createFieldSources
         npx task buildProver
         cd build
-        sudo cp prover /usr/bin/prover
+        sudo cp prover /usr/local/bin/prover
         cd ../..
     fi
 
