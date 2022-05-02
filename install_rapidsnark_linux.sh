@@ -1,9 +1,7 @@
 check_rapidSnark_installed() {
     echo "Check if rapidSnark is installed ..."
-    if [ ! -f "../tools/rapidsnark/build/prover" ]; then
+    if [ ! -f "`which prover`" ]; then
         echo "rapidSnark not found, perform install"
-        [ -d "../tools" ] || mkdir ../tools
-        cd ../tools
         git clone git@github.com:iden3/rapidsnark.git
         cd rapidsnark
         npm install
@@ -11,10 +9,12 @@ check_rapidSnark_installed() {
         git submodule update
         npx task createFieldSources
         npx task buildProver
-        cd ../../rapidsnark.tmp
+        cd build
+        sudo cp prover /usr/bin/prover
+        cd ../..
     fi
 
-    if [ -f "../tools/rapidsnark/build/prover" ]; then
+    if [ -f "`which prover`" ]; then
         echo "rapidsnark is ready ✅"
     else
         echo "rapidsnark install failed ❌, please install it manually."
