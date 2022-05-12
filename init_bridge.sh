@@ -7,8 +7,8 @@ then
 
     # Dont have to migrate the tokens again
     cd packages/solidity
-    npx truffle migrate --f 1 --to 1 --network ropsten
-    npx truffle migrate --f 1 --to 1 --network bsctestnet
+    npx truffle migrate --f 2 --to 2 --network ropsten
+    npx truffle migrate --f 2 --to 2 --network bsctestnet
     cd -
 
     cd packages/solidity/clients/tools/bridge
