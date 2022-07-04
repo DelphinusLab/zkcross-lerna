@@ -11,6 +11,10 @@ then
     npx truffle migrate --f 2 --to 2 --network bsctestnet
     cd -
 
+    cd packages/solidity/clients/
+    node config-contracts-info.js
+    cd -
+
     cd packages/solidity/clients/tools/bridge
     node init.js ropsten
     node init.js bsctestnet
