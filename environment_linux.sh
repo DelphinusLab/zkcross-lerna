@@ -38,6 +38,12 @@ check_brew_tools_installed() {
 }
 
 check_node_tools_installed() {
+    echo "Check if npm/node is installed ..."
+    if [ ! -f "`which npm`" ]; then
+        echo "npm not found, perform install"
+        sudo apt install npm
+    fi
+
     echo "Check if $1 is installed by node ..."
     if [ ! -f "`which $1`" ]; then
         echo "$1 not found, perform install"
