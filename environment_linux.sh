@@ -92,6 +92,7 @@ echo "1>. Create environment.tmp folder."
 echo "2>. Install build tools ..."
 cd environment.tmp
 check_brew_installed
+sudo apt-get update
 sudo apt install build-essential
 sudo apt install m4 npm python
 check_brew_tools_installed cmake
