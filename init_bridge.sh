@@ -9,6 +9,8 @@ then
     cd packages/solidity
     npx truffle migrate --f 2 --to 2 --network ropsten
     npx truffle migrate --f 2 --to 2 --network bsctestnet
+    npx truffle migrate --f 2 --to 2 --network cronostestnet
+    npx truffle migrate --f 2 --to 2 --network rolluxtestnet
     cd -
 
     cd packages/solidity/clients/
@@ -18,6 +20,8 @@ then
     cd packages/solidity/clients/tools/bridge
     node init.js ropsten
     node init.js bsctestnet
+    node init.js cronostestnet
+    node init.js rolluxtestnet
     cd -
 
     touch initbridge.lock
