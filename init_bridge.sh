@@ -24,6 +24,10 @@ then
     node init.js rolluxtestnet
     cd -
 
+    cd packages/monitors/src/tools
+    node init_BlockHeight.js
+    cd -
+
     touch initbridge.lock
 fi
 
