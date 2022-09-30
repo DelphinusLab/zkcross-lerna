@@ -22,17 +22,9 @@ else
     echo "MongoDB status Check: Failed, Please run MongoDB"
     exit 0
 fi
-## Check L1 Monitor Status (Modify `Networks` below when add more networks)
-Networks=("ropsten" "bsctestnet" "cronostestnet" "rolluxtestnet")
-for network in ${Networks[@]}; do
-  if ps aux | grep -v grep | grep "bash run_l1monitor.sh $network"
-    then
-        echo "$network monitor status check: Running";
-    else
-        echo "$network monitor status check: Not Running";
-        exit 0
-    fi
-done
+# Check L1 Monitor Status
+node packages/monitors/src/tools/l1MonitorRunningStatus/l1_monitor_status_checking.js
+
 ## Check L2 Monitor Status
 if ps aux | grep -v grep | grep "bash run_l2monitor.sh"
 then
