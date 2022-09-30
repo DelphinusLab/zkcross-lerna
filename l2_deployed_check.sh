@@ -33,17 +33,5 @@ for network in ${Networks[@]}; do
         exit 0
     fi
 done
-## Account & Admin configs
-{ read ADMINS; read -r AUTHORITIES_SEEDS; read -r PRE_FUNDED_SEEDS; read -r SUDO_ACCOUNT_SEED; } <<< `node packages/deployment/config/get-account-config.js`
-if echo "$(<packages/substrate-node/generated_config/account_config.rs)" | grep -Fq "${AUTHORITIES_SEEDS:20}" &&
-   echo "$(<packages/substrate-node/generated_config/account_config.rs)" | grep -Fq "${PRE_FUNDED_SEEDS:19}" &&
-   echo "$(<packages/substrate-node/generated_config/account_config.rs)" | grep -Fq "${SUDO_ACCOUNT_SEED:19}" &&
-   echo "$(<packages/substrate-node/generated_config/admins_config.rs)" | grep -Fq "$ADMINS"; 
-then
-   echo "Accounts & Admins configs check: Success"
-else
-   echo "Accounts & Admins configs check: Failed, Please run generate-config.sh in substrate-node to generate configs"
-   exit 0
-fi
 
 echo "L2 has been successfully deployed"
