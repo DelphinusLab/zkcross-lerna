@@ -33,5 +33,3 @@ else
     echo "L2 monitor status check: Not Running";
     exit 0
 fi
-
-echo "L2 has been successfully deployed"
