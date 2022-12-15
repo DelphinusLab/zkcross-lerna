@@ -48,7 +48,7 @@ check_repo_installed() {
     if [ ! -f "`which repo`" ]; then
         echo "repo not found, perform install"
         mkdir -p ~/.bin
-        PATH="${HOME}/.bin:${PATH}"
+        export PATH="${HOME}/.bin:${PATH}"
         curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
         chmod a+rx ~/.bin/repo
     fi
@@ -62,13 +62,13 @@ check_repo_installed() {
 
 check_nodejs_installed() {
     echo "Check if nodejs is installed ..."
-    if [ ! -f "`which nodejs`" ]; then
+    if [ ! -f "`which node`" ]; then
         echo "nodejs not found, perform install";
-        curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash - &&\
+        curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - &&\
         sudo apt-get install -y nodejs
     fi
 
-    if [ -f "`which nodejs`" ]; then
+    if [ -f "`which node`" ]; then
         echo "nodejs is ready ✅"
     else
         echo "nodejs install failed ❌, please install it manually."
